@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 小白安装使用教程｜中国用户可读版</title>
+  <style>
+    :root {
+      --red: #e1251b;
+      --red-dark: #b41414;
+      --blue: #1468e8;
+      --blue-dark: #0c3f8f;
+      --ink: #182033;
+      --muted: #5b6578;
+      --line: #e5e9f2;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --soft-red: #fff1f0;
+      --soft-blue: #eef5ff;
+      --soft-yellow: #fff8e6;
+      --green: #16794c;
+      --shadow: 0 10px 28px rgba(24, 32, 51, .08);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(225, 37, 27, .06) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, #fff 0, var(--bg) 480px);
+      background-size: 24px 24px, auto;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 650;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    a:focus,
+    button:focus {
+      outline: 3px solid rgba(20, 104, 232, .28);
+      outline-offset: 2px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      box-shadow: 0 8px 18px rgba(225, 37, 27, .22);
+      font-size: 18px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .nav a {
+      color: var(--muted);
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .nav a:hover { color: var(--red); }
+
+    .hero {
+      width: min(1180px, calc(100% - 32px));
+      margin: 44px auto 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 36px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--red-dark);
+      background: var(--soft-red);
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid #ffd1ce;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: #3d485d;
+      font-size: clamp(17px, 2vw, 21px);
+      margin: 0 0 22px;
+    }
+
+    .hero-actions,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 15px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--red);
+      box-shadow: 0 10px 20px rgba(225, 37, 27, .22);
+    }
+
+    .btn-secondary {
+      color: var(--blue-dark);
+      background: var(--soft-blue);
+      border-color: #cfe1ff;
+    }
+
+    .btn-light {
+      color: var(--ink);
+      background: #fff;
+      border-color: var(--line);
+    }
+
+    .hero-board {
+      position: relative;
+      min-height: 360px;
+      padding: 18px;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, transparent 0 47%, rgba(225, 37, 27, .08) 47% 53%, transparent 53%),
+        radial-gradient(circle at 84% 12%, rgba(20, 104, 232, .12), transparent 32%);
+      pointer-events: none;
+    }
+
+    .receipt {
+      position: relative;
+      height: 100%;
+      padding: 22px;
+      border: 1px dashed #cbd5e5;
+      background: rgba(255,255,255,.84);
+      border-radius: 8px;
+    }
+
+    .receipt-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+      font-weight: 900;
+    }
+
+    .route-list {
+      list-style: none;
+      padding: 16px 0 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .route-list li {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .badge-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 52px;
+    }
+
+    .notice {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 18px;
+      margin: 10px 0 28px;
+      border-radius: var(--radius);
+      border: 1px solid #ffe0a3;
+      background: var(--soft-yellow);
+    }
+
+    .notice-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #8a5200;
+      background: #ffe4a3;
+      font-weight: 900;
+    }
+
+    section {
+      margin-top: 26px;
+      scroll-margin-top: 88px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      color: var(--muted);
+      margin: 0;
+      font-size: 14px;
+      max-width: 500px;
+      text-align: right;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card,
+    .step,
+    .tool-card,
+    .faq-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 14px rgba(24, 32, 51, .04);
+    }
+
+    .card,
+    .tool-card,
+    .faq-item {
+      padding: 18px;
+    }
+
+    .card.recommended {
+      border-color: #ffc3bf;
+      box-shadow: 0 10px 24px rgba(225, 37, 27, .10);
+      position: relative;
+    }
+
+    .card.recommended::before {
+      content: "小白推荐";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      overflow: hidden;
+    }
+
+    .step-index {
+      padding: 18px 12px;
+      color: #fff;
+      background: linear-gradient(180deg, var(--red), var(--blue));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .step-index strong {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .step-body {
+      padding: 18px;
+    }
+
+    .step-visual {
+      display: block;
+      width: 100%;
+      max-width: 560px;
+      margin: 14px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      box-shadow: 0 8px 18px rgba(24, 32, 51, .06);
+    }
+
+    .visual-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
+      margin-top: 14px;
+    }
+
+    .visual-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .visual-card {
+      margin: 0;
+    }
+
+    .visual-card img {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      box-shadow: 0 8px 18px rgba(24, 32, 51, .06);
+    }
+
+    .visual-card figcaption {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .code-box {
+      margin: 12px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #d7deeb;
+      background: #101827;
+    }
+
+    .code-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      background: #1f293d;
+      color: #cbd5e5;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .copy-btn {
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    pre {
+      margin: 0;
+      padding: 14px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, "SFMono-Regular", Menlo, Monaco, "Courier New", monospace;
+      font-size: 14px;
+    }
+
+    pre code {
+      color: #eef6ff;
+      white-space: pre;
+    }
+
+    .inline-code {
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: #eef1f7;
+      color: #24304a;
+      font-family: Consolas, "SFMono-Regular", Menlo, Monaco, "Courier New", monospace;
+      font-size: .95em;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 9px;
+      align-items: start;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .tick {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #eaf8f1;
+      color: var(--green);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .plain-steps {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .plain-steps li {
+      margin: 8px 0;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tool-card {
+      min-height: 158px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tool-card strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .tool-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .tool-link {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 6px;
+      color: var(--red-dark);
+      font-weight: 850;
+    }
+
+    .plugin-compact {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .plugin-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .plugin-item .tag {
+      margin: 0;
+      text-align: center;
+    }
+
+    .plugin-item strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 16px;
+    }
+
+    .plugin-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .feature-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .feature-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #334055;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .faq-item h3 {
+      font-size: 18px;
+    }
+
+    .source-list {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    .source-list li {
+      margin: 6px 0;
+    }
+
+    footer {
+      padding: 26px 0 46px;
+      color: #687286;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .mini-table th {
+      background: #f0f5ff;
+      color: var(--blue-dark);
+      white-space: nowrap;
+    }
+
+    .mini-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 920px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px 0;
+      }
+
+      .hero,
+      .grid,
+      .grid.two,
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        margin-top: 22px;
+      }
+
+      .hero-copy {
+        padding: 10px 0 0;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        text-align: left;
+        margin-top: 6px;
+      }
+
+      .tool-card {
+        min-height: auto;
+      }
+
+      .plugin-compact {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-index {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 8px;
+        min-height: 58px;
+      }
+
+      .notice {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-board {
+        min-height: auto;
+      }
+
+      .mini-table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .visual-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .plugin-item {
+        grid-template-columns: 1fr;
+      }
+
+      .plugin-item .tag {
+        width: fit-content;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="回到顶部">
+        <span class="brand-mark">C</span>
+        <span>Codex 小白安装助手</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#choose">选哪个</a>
+        <a href="#prepare">准备</a>
+        <a href="#install">安装</a>
+        <a href="#login">登录</a>
+        <a href="#first-use">第一次使用</a>
+        <a href="#features">功能介绍</a>
+        <a href="#plugins">插件推荐</a>
+        <a href="#tools">工具地址</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="top" class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">2026-07-06 官方资料整理 · 给零基础用户</span>
+      <h1>从零开始安装并使用 Codex</h1>
+      <p class="lead">这是一份给中国用户看的小白教程。你不需要懂编程，只要按步骤确认账号、下载安装、登录、打开文件夹，就可以让 Codex 帮你读代码、改文件、运行检查。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi" target="_blank" rel="noopener">下载 Windows 版</a>
+        <a class="btn btn-secondary" href="https://developers.openai.com/codex/quickstart" target="_blank" rel="noopener">查看官方快速开始</a>
+        <a class="btn btn-light" href="#install">按步骤安装</a>
+      </div>
+    </div>
+
+    <aside class="hero-board" aria-label="安装路线概览">
+      <div class="receipt">
+        <div class="receipt-title">
+          <span>小白路线单</span>
+          <span>先易后难</span>
+        </div>
+        <ol class="route-list">
+          <li>
+            <span class="badge-num">1</span>
+            <div><strong>先确认能不能用</strong><br><span class="muted">查看 OpenAI 支持地区，准备 ChatGPT 账号或 API Key。</span></div>
+          </li>
+          <li>
+            <span class="badge-num">2</span>
+            <div><strong>优先装桌面版</strong><br><span class="muted">Windows 用户用官方 Microsoft Store 链接或 winget。</span></div>
+          </li>
+          <li>
+            <span class="badge-num">3</span>
+            <div><strong>登录后开文件夹</strong><br><span class="muted">选择项目目录，输入一句中文任务，让 Codex 开始帮你。</span></div>
+          </li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <div class="notice" role="note">
+      <div class="notice-icon">!</div>
+      <div>
+        <strong>重要提醒：先看地区和账号限制。</strong>
+        <p>Codex 需要能正常访问 OpenAI / ChatGPT 或 OpenAI API。请先查看 OpenAI 官方的<a href="https://developers.openai.com/api/docs/supported-countries" target="_blank" rel="noopener">支持的国家和地区</a>。如果你所在地区不在官方支持范围内，注册、登录或使用可能受限；本页不提供任何规避限制、账号风控或服务条款的做法。</p>
+      </div>
+    </div>
+
+    <section id="choose">
+      <div class="section-head">
+        <h2>我该选哪个版本？</h2>
+        <p class="section-note">如果你是第一次接触 Codex，直接选 Windows 桌面版。</p>
+      </div>
+      <div class="grid">
+        <article class="card recommended">
+          <span class="tag">最适合小白</span>
+          <h3>Codex Windows 桌面版</h3>
+          <p>像普通软件一样打开，有侧边栏、聊天窗口和结果预览。适合不想碰命令行的用户。</p>
+          <a href="https://developers.openai.com/codex/app/windows" target="_blank" rel="noopener">查看 Windows 官方说明</a>
+        </article>
+        <article class="card">
+          <span class="tag">适合进阶</span>
+          <h3>Codex CLI</h3>
+          <p>CLI 就是“命令行工具”。它在 PowerShell、终端或 WSL 里运行，适合已经会打开终端的人。</p>
+          <a href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">查看 CLI 官方说明</a>
+        </article>
+        <article class="card">
+          <span class="tag">写代码更顺手</span>
+          <h3>IDE 扩展</h3>
+          <p>如果你用 VS Code、Cursor、Windsurf 这类编辑器，可以把 Codex 放进编辑器里用。</p>
+          <a href="https://developers.openai.com/codex/ide" target="_blank" rel="noopener">查看 IDE 官方说明</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="prepare">
+      <div class="section-head">
+        <h2>安装前准备</h2>
+        <p class="section-note">先准备这些，后面就不会反复卡住。</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <h3>必须准备</h3>
+          <ul class="checklist">
+            <li><span class="tick">✓</span><span>一个可使用的 ChatGPT 账号，或一个 OpenAI Platform API Key。</span></li>
+            <li><span class="tick">✓</span><span>能正常打开 OpenAI / ChatGPT / OpenAI Platform 的网络环境。</span></li>
+            <li><span class="tick">✓</span><span>具备能稳定访问 OpenAI / ChatGPT 的网络条件，也就是常说的“科学上网”。请遵守所在地法律法规和 OpenAI 服务条款。</span></li>
+            <li><span class="tick">✓</span><span>Windows 电脑。小白优先使用 Windows 桌面版。</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>建议安装</h3>
+          <ul class="checklist">
+            <li><span class="tick">✓</span><span>Git：让 Codex 更好地查看和管理文件改动。<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">官方下载</a></span></li>
+            <li><span class="tick">✓</span><span>Node.js / Python：很多项目会用到，Codex 也更容易帮你运行检查。<a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js 下载</a> · <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 下载</a></span></li>
+            <li><span class="tick">✓</span><span>VS Code：适合打开文件夹、查看 Codex 改了哪里。<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官方下载</a></span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="section-head">
+        <h2>按步骤安装</h2>
+        <p class="section-note">照着做即可。命令右上角可以复制。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-index"><span>步骤</span><strong>1</strong></div>
+          <div class="step-body">
+            <h3>安装 Windows 桌面版</h3>
+            <p>最简单的方法是打开官方 Windows 下载地址，按系统提示安装。</p>
+            <div class="button-row">
+              <a class="btn btn-primary" href="https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi" target="_blank" rel="noopener">打开官方下载</a>
+              <a class="btn btn-secondary" href="https://developers.openai.com/codex/app/windows" target="_blank" rel="noopener">查看官方 Windows 文档</a>
+            </div>
+            <p class="muted">如果你喜欢用命令安装，也可以在 PowerShell 里运行下面这句。</p>
+            <div class="code-box">
+              <div class="code-head"><span>PowerShell</span><button class="copy-btn" data-copy="winget install Codex -s msstore">复制</button></div>
+              <pre><code>winget install Codex -s msstore</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-index"><span>步骤</span><strong>2</strong></div>
+          <div class="step-body">
+            <h3>需要命令行时安装 Codex CLI</h3>
+            <p>桌面版够用就不用装 CLI。确实需要在终端里使用时，再打开 PowerShell 运行官方 Windows 安装命令。</p>
+            <div class="code-box">
+              <div class="code-head"><span>PowerShell 官方安装脚本</span><button class="copy-btn" data-copy='powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"'>复制</button></div>
+              <pre><code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code></pre>
+            </div>
+            <p class="muted">如果你已经安装 Node.js，也可以用 npm 安装官方包。</p>
+            <div class="code-box">
+              <div class="code-head"><span>npm 安装方式</span><button class="copy-btn" data-copy="npm install -g @openai/codex">复制</button></div>
+              <pre><code>npm install -g @openai/codex</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-index"><span>步骤</span><strong>3</strong></div>
+          <div class="step-body">
+            <h3>检查是否安装成功</h3>
+            <p>如果你安装了 CLI，可以运行下面的命令。能看到版本号，就说明命令行版本已经装好。</p>
+            <div class="code-box">
+              <div class="code-head"><span>检查版本</span><button class="copy-btn" data-copy="codex --version">复制</button></div>
+              <pre><code>codex --version</code></pre>
+            </div>
+            <p>如果你只安装桌面版，能在开始菜单打开 <span class="inline-code">Codex</span>，也算安装成功。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="login">
+      <div class="section-head">
+        <h2>登录方式怎么选？</h2>
+        <p class="section-note">官方支持两种方式：ChatGPT 登录或 API Key 登录。</p>
+      </div>
+      <table class="mini-table">
+        <thead>
+          <tr>
+            <th>方式</th>
+            <th>适合谁</th>
+            <th>注意事项</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ChatGPT 登录</strong></td>
+            <td>已经有 ChatGPT Plus、Pro、Business、Edu、Enterprise 等账号的人。</td>
+            <td>Codex 会打开浏览器让你完成登录，过程中可能需要手机号/电话验证。建议使用本人可长期接收验证码的手机号，不建议使用临时、共享或第三方接码号码。Codex Cloud 需要 ChatGPT 登录。</td>
+          </tr>
+          <tr>
+            <td><strong>API Key 登录</strong></td>
+            <td>想按 API 用量计费，或做自动化、命令行流程的人。</td>
+            <td>需要到 OpenAI Platform 创建 API Key，费用按 API 账户计费。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="grid two" style="margin-top:16px">
+        <article class="card">
+          <h3>桌面版登录</h3>
+          <p>打开 Codex 后，按界面提示选择登录方式。小白优先选 ChatGPT 登录。若出现电话或短信验证，请使用本人可长期接收验证码的手机号；临时虚拟号或共享接码号码可能导致验证失败、账号找回困难或账号安全风险。</p>
+          <a href="https://developers.openai.com/codex/auth" target="_blank" rel="noopener">查看官方认证说明</a>
+        </article>
+        <article class="card">
+          <h3>CLI 登录</h3>
+          <p>如果你使用命令行，可以运行登录命令，然后按浏览器提示完成。</p>
+          <div class="code-box">
+            <div class="code-head"><span>登录 Codex CLI</span><button class="copy-btn" data-copy="codex login">复制</button></div>
+            <pre><code>codex login</code></pre>
+          </div>
+          <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">创建或管理 API Key</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="first-use">
+      <div class="section-head">
+        <h2>第一次使用 Codex</h2>
+        <p class="section-note">不要一上来提复杂需求，先让它做一个小任务。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-index"><span>开始</span><strong>1</strong></div>
+          <div class="step-body">
+            <h3>打开一个文件夹</h3>
+            <p>先在电脑里准备一个专门给 Codex 使用的项目文件夹。项目就是一组文件，比如网页、脚本、文档、代码。</p>
+            <ol class="plain-steps">
+              <li>在任意一个硬盘里新建文件夹，例如 <span class="inline-code">D:\codex-projects\my-first-project</span>。名字可以用英文、数字或拼音，尽量不要太长。</li>
+              <li>把你想让 Codex 处理的文件放进这个文件夹。刚开始也可以先放一个简单的 <span class="inline-code">txt</span> 文档或网页文件练习。</li>
+              <li>打开 Codex 桌面版，把这个文件夹拖到左侧的“项目”区域；如果不能拖入，就点击“添加项目”或“打开文件夹”。</li>
+              <li>文件夹出现在左侧项目列表后，点击项目名称即可打开。打开后再开始输入任务。</li>
+            </ol>
+            <div class="visual-pair" aria-label="创建文件夹并在 Codex 中打开项目的截图">
+              <figure class="visual-card">
+                <img src="assets/create-project-folder.png" alt="Windows 文件资源管理器中创建好的 Codex 项目文件夹">
+                <figcaption>先在硬盘里创建或准备好项目文件夹。</figcaption>
+              </figure>
+              <figure class="visual-card">
+                <img src="assets/codex-project-sidebar.png" alt="Codex 左侧项目区域显示多个项目文件夹">
+                <figcaption>再把文件夹拖到 Codex 左侧项目区域，出现后点击项目名称打开。</figcaption>
+              </figure>
+              <figure class="visual-card wide">
+                <img src="assets/codex-project-opened.png" alt="点击项目后打开 Codex 工作界面的截图">
+                <figcaption>项目打开后，会进入对应的 Codex 工作界面。之后就可以在右侧对话区输入你的任务。</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-index"><span>开始</span><strong>2</strong></div>
+          <div class="step-body">
+            <h3>输入一个小任务</h3>
+            <p>可以直接用中文，例如：</p>
+            <div class="code-box">
+              <div class="code-head"><span>示例提示词</span><button class="copy-btn" data-copy="请帮我阅读这个文件夹，告诉我这个项目是做什么的，并列出我下一步应该先看哪些文件。">复制</button></div>
+              <pre><code>请帮我阅读这个文件夹，告诉我这个项目是做什么的，并列出我下一步应该先看哪些文件。</code></pre>
+            </div>
+            <img class="step-visual" src="assets/codex-type-task-real.png" alt="在 Codex 输入框中输入中文任务的真实界面截图">
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-index"><span>开始</span><strong>3</strong></div>
+          <div class="step-body">
+            <h3>先看结果，再决定是否接受</h3>
+            <p>Codex 可能会读文件、运行命令或提出修改建议。小白建议先让它解释，再让它动手改。看到改动后，确认无误再保留。</p>
+            <img class="step-visual" src="assets/codex-review-result-real.png" alt="Codex 阅读项目并输出分析结果的真实界面截图">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-head">
+        <h2>常用功能介绍</h2>
+        <p class="section-note">先认识这些按钮和模式，用 Codex 会稳很多。</p>
+      </div>
+      <div class="feature-list">
+        <article class="feature-card">
+          <span class="tag">安全权限</span>
+          <h3>Codex 的三种常见操作权限</h3>
+          <p>权限决定 Codex 能不能读文件、改文件、运行命令。新手建议先用默认权限，不要一开始就给完全访问。</p>
+          <ul>
+            <li><strong>只读：</strong>适合聊天、解释、做计划，不让 Codex 改文件。</li>
+            <li><strong>默认权限：</strong>可在当前项目里读写，需要越界时会询问你。</li>
+            <li><strong>完全访问：</strong>权限最大，风险也最高，只给可信项目和明确任务使用。</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <span class="tag">先计划</span>
+          <h3>计划模式怎么用？</h3>
+          <p>计划模式会让 Codex 先理解项目、问清需求、写出执行方案，再开始动手。适合复杂任务，例如重做页面、修复多个问题、整理项目结构。</p>
+          <ul>
+            <li>在输入框里输入 <span class="inline-code">/plan</span> 可开启计划模式。</li>
+            <li>也可以先说“先给我计划，不要改文件”。</li>
+            <li>确认计划后，再让 Codex 开始执行。</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <span class="tag">整理对话</span>
+          <h3>如何归档？</h3>
+          <p>归档是把旧对话从常用列表里收起来，不等于删除。以后需要时仍可从归档或设置里找回。</p>
+          <ul>
+            <li>桌面版可在对话列表或设置里的归档区域管理。</li>
+            <li>CLI 里可输入 <span class="inline-code">/archive</span> 归档当前会话。</li>
+            <li>不要把归档和删除混淆，删除会更难恢复。</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <span class="tag">自动执行</span>
+          <h3>自动化是什么？</h3>
+          <p>自动化可以让 Codex 按时间重复检查任务，例如定时查看项目、提醒进度、跟踪某个长期问题。</p>
+          <ul>
+            <li>在侧边栏的“已安排/自动化”区域查看运行结果。</li>
+            <li>本地项目自动化需要电脑开机、Codex 正在运行、项目文件还在。</li>
+            <li>第一次设置前，先在普通对话里测试提示词。</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <span class="tag">快捷命令</span>
+          <h3>斜杠命令</h3>
+          <p>在输入框里输入 <span class="inline-code">/</span>，会出现可用命令。它像快捷菜单，可以快速切换模式或查看状态。</p>
+          <ul>
+            <li><span class="inline-code">/status</span>：查看当前会话状态。</li>
+            <li><span class="inline-code">/review</span>：让 Codex 做代码评审。</li>
+            <li><span class="inline-code">/permissions</span>：调整本次会话权限。</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <span class="tag">检查结果</span>
+          <h3>查看改动和评审</h3>
+          <p>Codex 改完文件后，不要直接相信结果。先看它改了哪些文件，再决定是否保留。</p>
+          <ul>
+            <li>使用桌面版的改动/评审面板查看差异。</li>
+            <li>命令行里可用 <span class="inline-code">/diff</span> 查看 Git 改动。</li>
+            <li>重要项目建议再让 Codex 做一次 <span class="inline-code">/review</span>。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="plugins">
+      <div class="section-head">
+        <h2>插件推荐</h2>
+        <p class="section-note">插件不是必须安装。先会基本使用，再按自己的需求添加。</p>
+      </div>
+      <article class="card">
+        <span class="tag">安装方法</span>
+        <h3>怎么安装插件？</h3>
+        <p>在 Codex 左侧点击“插件”，浏览或搜索插件，进入详情后选择添加。安装后建议新开一个对话，再让 Codex 使用它。插件可能需要登录对应服务，请只连接你信任并有权限使用的账号。</p>
+        <a href="https://developers.openai.com/codex/plugins" target="_blank" rel="noopener">查看官方插件说明</a>
+        <img class="step-visual" src="assets/codex-plugins-page.png" alt="Codex 左侧插件入口和插件列表页面截图">
+      </article>
+      <div class="plugin-compact" aria-label="推荐插件列表">
+        <div class="plugin-item">
+          <span class="tag">新手优先</span>
+          <div><strong>Browser / 浏览器类插件</strong><p>检查网页显示、按钮和布局，做网页时很实用。</p></div>
+        </div>
+        <div class="plugin-item">
+          <span class="tag">代码协作</span>
+          <div><strong>GitHub 插件</strong><p>查看仓库、Issue、Pull Request 和代码评审。</p></div>
+        </div>
+        <div class="plugin-item">
+          <span class="tag">办公资料</span>
+          <div><strong>Google Drive 插件</strong><p>处理 Drive、Docs、Sheets、Slides，需要授权 Google 账号。</p></div>
+        </div>
+        <div class="plugin-item">
+          <span class="tag">邮件整理</span>
+          <div><strong>Gmail 插件</strong><p>总结邮件、查找邮件、起草回复，按需安装。</p></div>
+        </div>
+        <div class="plugin-item">
+          <span class="tag">安全检查</span>
+          <div><strong>Codex Security 插件</strong><p>扫描有权限检查的代码，初次使用可以先跳过。</p></div>
+        </div>
+        <div class="plugin-item">
+          <span class="tag">第三方</span>
+          <div><strong>SkillsMP 插件市场</strong><p>独立社区整理的 Agent Skills 搜索站，可按关键词、职业、分类、创作者和 GitHub 来源发现大量第三方技能。它的独特之处是能帮你快速找到别人已经沉淀好的工作流，例如网页设计、代码审查、文档处理、数据分析等，让 Codex 从“通用助手”变得更像带工具箱的专业助手。不是 OpenAI 官方，使用前请检查来源、脚本和权限。<a href="https://skillsmp.com/zh" target="_blank" rel="noopener">打开网站</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="success">
+      <div class="section-head">
+        <h2>安装成功检查清单</h2>
+        <p class="section-note">全部满足，就可以正常开始用了。</p>
+      </div>
+      <ul class="checklist">
+        <li><span class="tick">✓</span><span>能打开 Codex 桌面版，或在终端运行 <span class="inline-code">codex --version</span> 看到版本号。</span></li>
+        <li><span class="tick">✓</span><span>能完成 ChatGPT 登录，或已经准备好 OpenAI API Key。</span></li>
+        <li><span class="tick">✓</span><span>能打开一个本地文件夹，并让 Codex 解释项目内容。</span></li>
+        <li><span class="tick">✓</span><span>知道不要把密码、API Key、账号令牌粘贴给陌生网页或公开聊天。</span></li>
+      </ul>
+    </section>
+
+    <section id="tools">
+      <div class="section-head">
+        <h2>工具地址合集</h2>
+        <p class="section-note">只放官方或可信来源，避免下载到假软件。</p>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-card">
+          <div><strong>OpenAI Codex 文档</strong><p>官方安装、使用、认证、CLI 说明。</p></div>
+          <a class="tool-link" href="https://developers.openai.com/codex/" target="_blank" rel="noopener">打开官网 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>Windows 版下载</strong><p>Codex Windows 桌面版官方入口。</p></div>
+          <a class="tool-link" href="https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>API Key</strong><p>创建和管理 OpenAI Platform API Key。</p></div>
+          <a class="tool-link" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">打开平台 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>支持地区</strong><p>先确认所在地区是否被官方支持。</p></div>
+          <a class="tool-link" href="https://developers.openai.com/api/docs/supported-countries" target="_blank" rel="noopener">查看列表 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>Git</strong><p>用于管理代码改动，Codex app 的 Git 功能会用到。</p></div>
+          <a class="tool-link" href="https://git-scm.com/downloads" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>Node.js LTS</strong><p>很多网页项目会用到，npm 安装 CLI 也需要它。</p></div>
+          <a class="tool-link" href="https://nodejs.org/" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>Python</strong><p>很多脚本和数据处理项目会用到。</p></div>
+          <a class="tool-link" href="https://www.python.org/downloads/" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>GitHub CLI</strong><p>需要连接 GitHub 工作流时使用。</p></div>
+          <a class="tool-link" href="https://cli.github.com/" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>VS Code</strong><p>常用代码编辑器，适合查看文件和修改结果。</p></div>
+          <a class="tool-link" href="https://code.visualstudio.com/" target="_blank" rel="noopener">官方下载 →</a>
+        </article>
+        <article class="tool-card">
+          <div><strong>Codex GitHub</strong><p>Codex CLI 开源仓库和安装说明。</p></div>
+          <a class="tool-link" href="https://github.com/openai/codex" target="_blank" rel="noopener">查看仓库 →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-head">
+        <h2>常见问题</h2>
+        <p class="section-note">遇到问题先看这里，很多情况不是你操作错了。</p>
+      </div>
+      <div class="faq">
+        <article class="faq-item">
+          <h3>1. 打不开 OpenAI、ChatGPT 或登录页怎么办？</h3>
+          <p>先确认你的所在地是否在 OpenAI 官方支持范围内，并检查网络是否能正常访问相关服务。本页不提供绕过地区或服务限制的方法。</p>
+        </article>
+        <article class="faq-item">
+          <h3>2. PowerShell 提示脚本被禁止运行怎么办？</h3>
+          <p>Windows 可能限制脚本执行。官方文档提到常见处理方式是把执行策略调整为 <span class="inline-code">RemoteSigned</span>。修改系统策略前，请先阅读微软官方说明。</p>
+          <div class="code-box">
+            <div class="code-head"><span>PowerShell</span><button class="copy-btn" data-copy="Set-ExecutionPolicy -ExecutionPolicy RemoteSigned">复制</button></div>
+            <pre><code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</code></pre>
+          </div>
+          <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies" target="_blank" rel="noopener">查看微软执行策略说明</a>
+        </article>
+        <article class="faq-item">
+          <h3>3. Git 功能不可用怎么办？</h3>
+          <p>先安装 Git。Codex 的评审和改动查看功能会用到 Git。Windows 用户也可以用官方文档里的命令安装。</p>
+          <div class="code-box">
+            <div class="code-head"><span>PowerShell</span><button class="copy-btn" data-copy="winget install --id Git.Git">复制</button></div>
+            <pre><code>winget install --id Git.Git</code></pre>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3>4. 输入 codex 后提示找不到命令怎么办？</h3>
+          <p>通常说明 CLI 没安装成功，或安装后终端还没刷新。先关闭并重新打开 PowerShell，再运行 <span class="inline-code">codex --version</span>。如果仍然不行，重新执行 CLI 安装步骤。</p>
+        </article>
+        <article class="faq-item">
+          <h3>5. API Key 应该发给别人吗？</h3>
+          <p>不要。API Key 相当于你的付费钥匙。不要发到聊天、论坛、工单截图或公开仓库里。需要时只在 OpenAI 官方平台创建和管理。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head">
+        <h2>官方来源</h2>
+        <p class="section-note">本页内容按这些官方资料整理。</p>
+      </div>
+      <article class="card">
+        <ul class="source-list">
+          <li><a href="https://developers.openai.com/codex/quickstart" target="_blank" rel="noopener">OpenAI Codex Quickstart</a></li>
+          <li><a href="https://developers.openai.com/codex/app/windows" target="_blank" rel="noopener">Codex app for Windows</a></li>
+          <li><a href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">Codex CLI</a></li>
+          <li><a href="https://developers.openai.com/codex/auth" target="_blank" rel="noopener">Codex Authentication</a></li>
+          <li><a href="https://github.com/openai/codex" target="_blank" rel="noopener">openai/codex GitHub 仓库</a></li>
+          <li><a href="https://developers.openai.com/api/docs/supported-countries" target="_blank" rel="noopener">OpenAI 支持的国家和地区</a></li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    本页是静态 HTML 教程页，不收集信息，不保存账号，不提供非官方安装包。最后更新：2026-07-06。
+  </footer>
+
+  <script>
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+      button.addEventListener("click", async function () {
+        var text = button.getAttribute("data-copy");
+        try {
+          await navigator.clipboard.writeText(text);
+          var oldText = button.textContent;
+          button.textContent = "已复制";
+          setTimeout(function () { button.textContent = oldText; }, 1400);
+        } catch (error) {
+          button.textContent = "请手动复制";
+          setTimeout(function () { button.textContent = "复制"; }, 1800);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

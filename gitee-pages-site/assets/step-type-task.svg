@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
+  <title id="title">输入第一个任务示意图</title>
+  <desc id="desc">在 Codex 输入框中输入中文任务的简化界面示意。</desc>
+  <rect width="920" height="560" fill="#f4f7fb"/>
+  <rect x="52" y="48" width="816" height="464" rx="18" fill="#ffffff" stroke="#d9e1ee" stroke-width="2"/>
+  <rect x="84" y="82" width="752" height="72" rx="12" fill="#eef5ff"/>
+  <text x="112" y="127" fill="#0c3f8f" font-family="Microsoft YaHei, Arial" font-size="25" font-weight="900">新线程：让 Codex 先认识这个项目</text>
+  <rect x="106" y="190" width="540" height="72" rx="12" fill="#f8fafc" stroke="#d9e1ee"/>
+  <text x="132" y="220" fill="#182033" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="700">你可以直接输入中文</text>
+  <text x="132" y="248" fill="#5b6578" font-family="Microsoft YaHei, Arial" font-size="16">不需要写专业命令，像和人说话一样描述任务。</text>
+  <rect x="106" y="318" width="708" height="106" rx="14" fill="#101827"/>
+  <text x="132" y="354" fill="#cbd5e5" font-family="Microsoft YaHei, Arial" font-size="16">给 Codex 的第一句话</text>
+  <text x="132" y="392" fill="#ffffff" font-family="Microsoft YaHei, Arial" font-size="20" font-weight="700">请帮我阅读这个文件夹，告诉我这个项目是做什么的。</text>
+  <rect x="684" y="440" width="130" height="46" rx="8" fill="#e1251b"/>
+  <text x="726" y="470" fill="#ffffff" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="800">发送</text>
+  <path d="M738 226l84 46-88 40 18-42-14-44z" fill="#1468e8"/>
+  <circle cx="742" cy="274" r="12" fill="#ffffff"/>
+</svg>

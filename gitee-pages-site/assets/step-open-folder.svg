@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
+  <title id="title">打开项目文件夹示意图</title>
+  <desc id="desc">Codex 桌面版中选择添加项目文件夹的简化界面示意。</desc>
+  <rect width="920" height="560" fill="#f4f7fb"/>
+  <rect x="42" y="42" width="836" height="476" rx="18" fill="#ffffff" stroke="#d9e1ee" stroke-width="2"/>
+  <rect x="42" y="42" width="836" height="62" rx="18" fill="#182033"/>
+  <circle cx="80" cy="73" r="8" fill="#e1251b"/>
+  <circle cx="106" cy="73" r="8" fill="#ffbd2e"/>
+  <circle cx="132" cy="73" r="8" fill="#27c93f"/>
+  <text x="168" y="81" fill="#ffffff" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="700">Codex 桌面版</text>
+  <rect x="70" y="130" width="214" height="350" rx="12" fill="#eef5ff"/>
+  <text x="96" y="176" fill="#0c3f8f" font-family="Microsoft YaHei, Arial" font-size="24" font-weight="800">项目区域</text>
+  <rect x="96" y="208" width="150" height="42" rx="8" fill="#ffffff" stroke="#cfe1ff"/>
+  <text x="118" y="236" fill="#182033" font-family="Microsoft YaHei, Arial" font-size="17">codex-ui</text>
+  <rect x="96" y="268" width="150" height="42" rx="8" fill="#ffffff" stroke="#cfe1ff"/>
+  <text x="118" y="296" fill="#182033" font-family="Microsoft YaHei, Arial" font-size="17">codx-shipin</text>
+  <rect x="96" y="342" width="150" height="54" rx="8" fill="#e1251b"/>
+  <text x="121" y="377" fill="#ffffff" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="800">+ 添加项目</text>
+  <rect x="330" y="150" width="480" height="300" rx="16" fill="#ffffff" stroke="#d9e1ee" stroke-width="2"/>
+  <path d="M405 258h96l24 36h196c18 0 32 14 32 32v68H373v-104c0-18 14-32 32-32z" fill="#1468e8"/>
+  <path d="M373 314h380v80c0 18-14 32-32 32H405c-18 0-32-14-32-32z" fill="#4d95ff"/>
+  <text x="412" y="205" fill="#182033" font-family="Microsoft YaHei, Arial" font-size="28" font-weight="900">先创建项目文件夹</text>
+  <text x="412" y="238" fill="#5b6578" font-family="Microsoft YaHei, Arial" font-size="18">把文件夹拖到左侧项目区域，出现后点击项目名称打开。</text>
+  <path d="M360 330 C300 318 265 288 240 250" fill="none" stroke="#e1251b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M239 250 l3 34 l26 -18" fill="none" stroke="#e1251b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="520" y="470" width="226" height="48" rx="8" fill="#e1251b"/>
+  <text x="567" y="501" fill="#ffffff" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="800">点击项目打开</text>
+</svg>
